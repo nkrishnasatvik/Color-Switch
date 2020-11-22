@@ -5,42 +5,45 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="1000.0" maxWidth="1000.0" minHeight="1000.0" minWidth="1000.0" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="2189.0" maxWidth="1000.0" minHeight="1000.0" minWidth="738.0" prefHeight="2123.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FxMlController">
 	<children>
-		<AnchorPane layoutX="10.0" layoutY="10.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+		<AnchorPane fx:id="MainPage" layoutX="10.0" layoutY="10.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
 			<children>
 				<Button layoutX="75.0" layoutY="319.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="Saved Games" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
 				<Button layoutX="75.0" layoutY="377.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="Exit" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
 				<Button layoutX="75.0" layoutY="257.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="New Game" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
 				<ImageView blendMode="SCREEN" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@../../../../Downloads/TitleImage.jpg" />
+						<Image url="@../../../../../Users/Win10/Downloads/TitleImage.jpg" />
 					</image>
 				</ImageView>
 			</children>
 		</AnchorPane>
-		<AnchorPane layoutX="349.0" layoutY="41.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+		<AnchorPane fx:id="ObstacleSquare" layoutX="366.0" layoutY="10.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
 			<children>
 				<Button layoutX="271.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="| |" textFill="WHITE" />
 				<Circle fill="BLUE" layoutX="160.0" layoutY="415.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-				<Group layoutX="83.0" layoutY="94.0">
+				<Group fx:id="Square" layoutX="83.0" layoutY="94.0">
 					<children>
-						<Line endX="130.0" layoutX="10.0" layoutY="10.0" stroke="RED" strokeWidth="20.0" />
-						<Line endX="-0.5" endY="130.0" layoutX="140.0" layoutY="10.0" stroke="PURPLE" strokeWidth="20.0" />
-						<Line endX="130.0" layoutX="10.0" layoutY="140.0" stroke="YELLOW" strokeWidth="20.0" />
-						<Line endX="-0.5" endY="80.0" layoutX="10.0" layoutY="60.0" startX="-0.5" startY="-30.3333740234375" stroke="BLUE" strokeWidth="20.0" />
+						<Line endX="109.66668701171875" endY="-7.62939453125E-6" layoutX="10.0" layoutY="10.0" stroke="RED" strokeLineCap="ROUND" strokeWidth="20.0" />
+						<Line endY="110.66667175292969" layoutX="140.0" layoutY="10.0" stroke="PURPLE" strokeLineCap="ROUND" strokeWidth="20.0" />
+						<Line endX="130.0" layoutX="10.0" layoutY="140.0" startX="20.33331298828125" startY="1.52587890625E-5" stroke="YELLOW" strokeLineCap="ROUND" strokeWidth="20.0" />
+						<Line endX="-0.5" endY="80.0" layoutX="10.0" layoutY="60.0" startX="-0.5" startY="-30.3333740234375" stroke="BLUE" strokeLineCap="ROUND" strokeWidth="20.0" />
 					</children>
 				</Group>
 			</children>
 		</AnchorPane>
-		<AnchorPane layoutX="45.0" layoutY="486.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+		<AnchorPane fx:id="ObstacleTri" layoutX="10.0" layoutY="527.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
 			<children>
-				<Group autoSizeChildren="false" layoutX="160.0" layoutY="166.0">
+				<Group fx:id="Triangle" autoSizeChildren="false" layoutX="160.0" layoutY="166.0">
 					<children>
-						<Line endX="85.0" startX="-85.0" stroke="YELLOW" strokeLineCap="ROUND" strokeWidth="20.0" />
+						<Line endX="83.33335876464844" startX="-85.0" stroke="YELLOW" strokeLineCap="ROUND" strokeWidth="20.0" />
 						<Line endX="85.0" layoutX="42.0" layoutY="74.0" rotate="-60.0" startX="-85.0" stroke="PURPLE" strokeLineCap="ROUND" strokeWidth="20.0" />
 						<Line endX="85.0" layoutX="-45.0" layoutY="73.0" rotate="60.0" startX="-85.0" stroke="BLUE" strokeLineCap="ROUND" strokeWidth="20.0" />
 					</children>
@@ -49,19 +52,67 @@
 				<Button layoutX="280.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="| |" textFill="WHITE" />
 			</children>
 		</AnchorPane>
-		<AnchorPane layoutX="381.0" layoutY="500.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+		<AnchorPane fx:id="ObstaclePlus" layoutX="366.0" layoutY="527.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
 			<children>
 				<Circle fill="YELLOW" layoutX="159.0" layoutY="430.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
 				<Button layoutX="280.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="| |" textFill="WHITE" />
-				<Group layoutX="140.0" layoutY="100.0">
+				<Group fx:id="Plus" layoutX="140.0" layoutY="100.0">
 					<children>
 						<Line endX="75.0" layoutY="70.0" startX="-5.0" stroke="RED" strokeLineCap="ROUND" strokeWidth="20.0" />
-						<Line endY="140.0" layoutX="75.0" layoutY="9.0" startY="60.0" stroke="PURPLE" strokeLineCap="ROUND" strokeWidth="20.0" />
+						<Line endY="140.0" layoutX="75.0" layoutY="9.0" startY="60.66668701171875" stroke="PURPLE" strokeLineCap="ROUND" strokeWidth="20.0" />
 						<Line endX="125.0" layoutX="30.0" layoutY="70.0" startX="45.0" stroke="YELLOW" strokeLineCap="ROUND" strokeWidth="20.0" />
 						<Line endY="60.0" layoutX="75.0" layoutY="10.0" startY="-20.0" stroke="BLUE" strokeLineCap="ROUND" strokeWidth="20.0" />
 					</children>
 				</Group>
 			</children>
 		</AnchorPane>
+      <AnchorPane fx:id="SavedMenu" layoutX="9.0" layoutY="1038.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+         <children>
+            <Button layoutX="191.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: rgb(45,44,44);" text="Select" textFill="WHITE" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="49.0" />
+            <Text fill="WHITE" layoutX="70.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved Games" textAlignment="CENTER" wrappingWidth="180.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="65.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1. Saved Game No 1" wrappingWidth="112.32050807568874" />
+            <Button layoutX="191.0" layoutY="231.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: rgb(45,44,44);" text="Select" textFill="WHITE" />
+            <Text fill="WHITE" layoutX="66.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2. Saved Game No 2" wrappingWidth="112.32050807568874" />
+            <Button layoutX="191.0" layoutY="282.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: rgb(45,44,44);" text="Select" textFill="WHITE" />
+            <Text fill="WHITE" layoutX="66.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3. Saved Game No 3" wrappingWidth="112.32050807568874" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="PausedScreen" layoutX="366.0" layoutY="1038.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+         <children>
+            <Text fill="WHITE" layoutX="70.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game Paused" textAlignment="CENTER" wrappingWidth="180.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Button layoutX="133.0" layoutY="183.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" style="-fx-background-color: rgb(192,192,192); -fx-background-radius: 50px;" text="Resume">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+            <Button layoutX="133.0" layoutY="279.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" style="-fx-background-color: rgb(192,192,192); -fx-background-radius: 50px;" text="Exit">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ObstacleCircle" layoutX="10.0" layoutY="1552.0" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);">
+         <children>
+            <Circle fill="YELLOW" layoutX="149.0" layoutY="431.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
+            <Button layoutX="280.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: rgb(45,44,44);" text="| |" textFill="WHITE" />
+            <Group fx:id="Circle" layoutX="118.0" layoutY="162.0" AnchorPane.bottomAnchor="208.5" AnchorPane.leftAnchor="73.16666666666666" AnchorPane.rightAnchor="73.5" AnchorPane.topAnchor="118.16666666666666">
+               <children>
+                  <Arc fill="#1f93ff00" layoutX="48.0" layoutY="32.0" length="90.0" radiusX="65.0" radiusY="65.0" stroke="RED" strokeWidth="10.0" />
+                  <Arc fill="#1f93ff00" layoutX="37.0" layoutY="31.0" length="90.0" radiusX="65.0" radiusY="65.0" startAngle="90.0" stroke="BLUE" strokeWidth="10.0" />
+                  <Arc fill="#1f93ff00" layoutX="38.0" layoutY="42.0" length="90.0" radiusX="65.0" radiusY="65.0" startAngle="180.0" stroke="YELLOW" strokeWidth="10.0" />
+                  <Arc fill="#1f93ff00" layoutX="48.0" layoutY="42.0" length="90.0" radiusX="65.0" radiusY="65.0" startAngle="270.0" stroke="PURPLE" strokeWidth="10.0" />
+               </children>
+            </Group>
+         </children>
+      </AnchorPane>
 	</children>
 </AnchorPane>
+
