@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="MainPage" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPage">
+   <children>
+      <Button fx:id="savedGamesButton" layoutX="75.0" layoutY="319.0" mnemonicParsing="false" style="-fx-background-color: rgb(55,50,45);" text="Saved Games" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
+      <Button fx:id="exitButton" layoutX="75.0" layoutY="377.0" mnemonicParsing="false" style="-fx-background-color: rgb(55,50,45);" text="Exit" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
+      <Button fx:id="newGameButton" layoutX="75.0" layoutY="257.0" mnemonicParsing="false" style="-fx-background-color: rgb(55,50,45);" text="New Game" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
+      <ImageView blendMode="SCREEN" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Downloads/TitleImage.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
