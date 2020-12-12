@@ -31,7 +31,7 @@ public class respawnPageController {
 
     @FXML
     void resumeBTAction(ActionEvent event) {
-
+    	
     }
 
     @FXML

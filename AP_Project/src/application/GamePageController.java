@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
@@ -18,14 +19,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class GamePageController {
 
+	@FXML
+	private AnchorPane anchorPane;
 
 	@FXML
 	private Button pauseBT;
@@ -50,23 +58,80 @@ public class GamePageController {
 
 	@FXML
 	private Group ColorSwitcher;
-	
-	 @FXML
-	 private Label scoreLabel;
+
+	@FXML
+	private Label scoreLabel;
 
 	@FXML
 	private Button bounce;
 
 	@FXML
-	public void startGame(ActionEvent event) {
+	private ImageView star;
 
-		RotateTransition rT = new RotateTransition();
-		rT.setDuration(Duration.millis(3000));
-		rT.setNode(SquareObstacle);
-		rT.setByAngle(360);
-		rT.setCycleCount(Timeline.INDEFINITE);
-		rT.setAutoReverse(false);
-		rT.play();   
+	@FXML
+	private Group starGroup;
+
+	AnimationTimer timer;
+
+	AnimationTimer infiniteTimer;
+	
+	RotateTransition rt;
+
+	public void ballDown() {
+		
+		double dy = -1.5;
+
+		ball.setLayoutY(ball.getLayoutY() - dy);
+
+	}
+
+	public void ballUp() {
+
+		double dy = +2;
+
+		ball.setLayoutY(ball.getLayoutY() - dy);
+
+
+	}
+
+
+	@FXML
+	public void initialize() {
+
+		timer = new AnimationTimer() {
+			@Override
+			public void handle(long l) {
+				ballDown();
+			}
+
+		};
+
+		timer.start();
+
+		infiniteTimer = new AnimationTimer() {
+			@Override
+			public void handle(long l) {
+				try {
+					collisions();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		};
+
+		infiniteTimer.start();
+
+		this.rt = new RotateTransition();
+		rt.setDuration(Duration.millis(50000));
+		rt.setNode(SquareObstacle);
+		rt.setByAngle(3600);
+		rt.setCycleCount(Timeline.INDEFINITE);
+		rt.setAutoReverse(false);
+		rt.play();
+
+
 
 	}
 
@@ -81,45 +146,82 @@ public class GamePageController {
 		window.show();
 	}
 
-	@FXML
-	public void ballBounce(ActionEvent event) {
-		
-		int x=Integer.parseInt(scoreLabel.getText());
-		
-		scoreLabel.setText(Integer.toString(x+1));
-		
-		double initialpos= ball.getLayoutY();
-		
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(20), 
-				new EventHandler<ActionEvent>() {
+	private void collisions() throws IOException {
 
-					double dy = 3; //Step on y
+		boolean colorSwitchCollision = false;
+		boolean starCollision=false;
+		boolean squareObstacleDeath=false;
 
-					@Override
-					public void handle(ActionEvent t) {
+		for (Node static_bloc : anchorPane.getChildren()) {
+			if (static_bloc ==this.ColorSwitcher) {
+
+				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {
+					colorSwitchCollision = true;
+				}
+			}
+			if(static_bloc==this.starGroup) {
+				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {
+					starCollision = true;
+				}
+			}
+			
+			if(static_bloc==this.SquareObstacle) {
+				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {	
+//					
+
+					for(Node line:this.SquareObstacle.getChildren()) {
 						
-						
-						ball.setLayoutY(ball.getLayoutY() - dy);
-
-						Bounds bounds = ball.getParent().getBoundsInLocal();
-
-						if(ball.getLayoutY() <= (initialpos-70 + ball.getRadius())){
-
-//							if(dy>0);
-//							else 
-								dy = -dy;
-
-						}
 					}
-				}));
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
-		//    		   } 
-		//    		};   
-		//    		//Adding event Filter 
-		//    		Circle.addEventFilter(MouseEvent.MOUSE_CLICKED, eventHandler);
+//					
+				}
+			}
+
+//			System.out.println(this.starGroup.getId()+" "+static_bloc.toString());
+		}
+
+		if (colorSwitchCollision) {
+
+
+			if(ball.getFill()==Color.BLUE) {
+				ball.setFill(Color.RED);
+			}
+			else if(ball.getFill()==Color.RED) {
+				ball.setFill(Color.YELLOW);
+			}
+			else if(ball.getFill()==Color.YELLOW) {
+				ball.setFill(Color.PURPLE);
+			}
+			else {
+				ball.setFill(Color.BLUE);
+			}
+			
+			this.ColorSwitcher.setLayoutY(this.ColorSwitcher.getLayoutY()+500);
+		}
+
+		if(starCollision) {
+			
+			int x=Integer.parseInt(scoreLabel.getText());
+			
+			scoreLabel.setText(Integer.toString(x+1));
+
+			this.starGroup.setLayoutY(this.starGroup.getLayoutY()+500);
+		}
+
+		//		System.out.println(starCollision);
 	}
 
+	@FXML
+	public void ballBounce(ActionEvent event) throws IOException {		
 
+		timer.stop();
+
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(300), 
+				new KeyValue(ball.layoutYProperty(), ball.getLayoutY()-70)));
+		timeline.setCycleCount(1);
+		timeline.play();
+
+		timer.start();
+
+	}
 
 }

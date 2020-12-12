@@ -6,12 +6,15 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Bounds;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
@@ -32,6 +35,14 @@ public class MainPageController {
 
     @FXML
     private Button newGameButton;
+    
+    public AnchorPane getMainPage() {
+		return MainPage;
+	}
+
+	public void setMainPage(AnchorPane mainPage) {
+		this.MainPage = mainPage;
+	}
 
     @FXML
     public void startGamePage(ActionEvent event) throws IOException {
@@ -43,19 +54,7 @@ public class MainPageController {
     	window.setScene(GamePageScene);
     	window.show();
     	
-    	
     }
-    
-
-    public AnchorPane getMainPage() {
-		return MainPage;
-	}
-
-
-	public void setMainPage(AnchorPane mainPage) {
-		MainPage = mainPage;
-	}
-
 
 	@FXML
     void displaySavedPage(ActionEvent event) throws IOException {
@@ -67,7 +66,4 @@ public class MainPageController {
     	window.setScene(GamePageScene);
     	window.show();
     }
-    
-    
-
 }
