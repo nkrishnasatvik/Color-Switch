@@ -6,7 +6,6 @@ public class Ball {
 	
 	Circle Ball;
 	
-	
 	public void setBall(Circle ball) {
 		this.Ball=ball;
 	}

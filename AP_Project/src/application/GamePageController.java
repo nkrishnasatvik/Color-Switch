@@ -1,12 +1,9 @@
 package application;
 
 import java.io.IOException;
+import java.util.*;
 
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,17 +13,12 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -71,32 +63,66 @@ public class GamePageController {
 	@FXML
 	private Group starGroup;
 
-	AnimationTimer timer;
+	private AnimationTimer timer;
 
-	AnimationTimer infiniteTimer;
-	
-	RotateTransition rt;
+	private AnimationTimer infiniteTimer;
+
+	private ArrayList<Group> obstacles;
+
+	RotateTransition rt1;
+	RotateTransition rt2;
+	RotateTransition rt3;
+	RotateTransition rt4;
 
 	public void ballDown() {
-		
+
 		double dy = -1.5;
-
 		ball.setLayoutY(ball.getLayoutY() - dy);
 
 	}
-
-	public void ballUp() {
-
-		double dy = +2;
-
-		ball.setLayoutY(ball.getLayoutY() - dy);
-
-
+	
+	
+	public void obstaclesUp() {
+		if(this.SquareObstacle.getLayoutY()>500) {
+			this.SquareObstacle.setLayoutY(this.SquareObstacle.getLayoutY()-1200);
+		}
+		
+		else if(this.Triangle.getLayoutY()>500) {
+			this.Triangle.setLayoutY(this.Triangle.getLayoutY()-1200);
+		}
+		
+		else if(this.Plus.getLayoutY()>500) {
+			this.Plus.setLayoutY(this.Plus.getLayoutY()-1200);
+		}
+		
+		else if(this.Circle.getLayoutY()>500) {
+			this.Circle.setLayoutY(this.Circle.getLayoutY()-1200);
+		}
 	}
-
+//
+//	public void ballUp() {
+//
+//		double dy = +1.5;
+//		ball.setLayoutY(ball.getLayoutY() - dy);
+//
+//	}
+	
+	public void stopGame(){
+		
+	}
 
 	@FXML
 	public void initialize() {
+
+		obstacles=new ArrayList<Group>();
+		obstacles.add(this.SquareObstacle);
+		obstacles.add(this.Circle);
+		obstacles.add(this.Plus);
+		obstacles.add(this.Triangle);
+
+		this.Circle.setLayoutY(this.Circle.getLayoutY()-300);
+		this.Plus.setLayoutY(this.Plus.getLayoutY()-600);
+		this.Triangle.setLayoutY(this.Triangle.getLayoutY()-900);
 
 		timer = new AnimationTimer() {
 			@Override
@@ -109,12 +135,14 @@ public class GamePageController {
 		timer.start();
 
 		infiniteTimer = new AnimationTimer() {
+
 			@Override
 			public void handle(long l) {
 				try {
 					collisions();
+					moveup();
+					obstaclesUp();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -123,16 +151,53 @@ public class GamePageController {
 
 		infiniteTimer.start();
 
-		this.rt = new RotateTransition();
-		rt.setDuration(Duration.millis(50000));
-		rt.setNode(SquareObstacle);
-		rt.setByAngle(3600);
-		rt.setCycleCount(Timeline.INDEFINITE);
-		rt.setAutoReverse(false);
-		rt.play();
+		rotate();
+		
+	}
 
+	public void rotate() {
 
+		this.rt1 = new RotateTransition();
+		rt1.setDuration(Duration.millis(50000));
+		rt1.setNode(this.SquareObstacle);
+		rt1.setByAngle(3600);
+		rt1.setCycleCount(Timeline.INDEFINITE);
+		rt1.setAutoReverse(false);
+		rt1.play();
 
+		this.rt2 = new RotateTransition();
+		rt2.setDuration(Duration.millis(50000));
+		rt2.setNode(this.Triangle);
+		rt2.setByAngle(3600);
+		rt2.setCycleCount(Timeline.INDEFINITE);
+		rt2.setAutoReverse(false);
+		rt2.play();
+
+		this.rt3 = new RotateTransition();
+		rt3.setDuration(Duration.millis(50000));
+		rt3.setNode(this.Plus);
+		rt3.setByAngle(3600);
+		rt3.setCycleCount(Timeline.INDEFINITE);
+		rt3.setAutoReverse(false);
+		rt3.play();
+
+		this.rt4 = new RotateTransition();
+		rt4.setDuration(Duration.millis(50000));
+		rt4.setNode(this.Circle);
+		rt4.setByAngle(3600);
+		rt4.setCycleCount(Timeline.INDEFINITE);
+		rt4.setAutoReverse(false);
+		rt4.play();
+	}
+
+	public void moveup() {
+
+		if(this.ball.getLayoutY()<350) {
+			for(Node node:this.anchorPane.getChildren()) {
+				node.setLayoutY(node.getLayoutY()+1);
+			}
+		}
+		
 	}
 
 	@FXML
@@ -153,6 +218,7 @@ public class GamePageController {
 		boolean squareObstacleDeath=false;
 
 		for (Node static_bloc : anchorPane.getChildren()) {
+
 			if (static_bloc ==this.ColorSwitcher) {
 
 				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {
@@ -164,19 +230,18 @@ public class GamePageController {
 					starCollision = true;
 				}
 			}
-			
+
 			if(static_bloc==this.SquareObstacle) {
 				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {	
-//					
 
 					for(Node line:this.SquareObstacle.getChildren()) {
-						
+
 					}
-//					
+					//					
 				}
 			}
 
-//			System.out.println(this.starGroup.getId()+" "+static_bloc.toString());
+			//			System.out.println(this.starGroup.getId()+" "+static_bloc.toString());
 		}
 
 		if (colorSwitchCollision) {
@@ -194,17 +259,17 @@ public class GamePageController {
 			else {
 				ball.setFill(Color.BLUE);
 			}
-			
-			this.ColorSwitcher.setLayoutY(this.ColorSwitcher.getLayoutY()+500);
+
+			this.ColorSwitcher.setLayoutY(this.ColorSwitcher.getLayoutY()-300);
 		}
 
 		if(starCollision) {
-			
+
 			int x=Integer.parseInt(scoreLabel.getText());
-			
+
 			scoreLabel.setText(Integer.toString(x+1));
 
-			this.starGroup.setLayoutY(this.starGroup.getLayoutY()+500);
+			this.starGroup.setLayoutY(this.starGroup.getLayoutY()-300);
 		}
 
 		//		System.out.println(starCollision);
@@ -215,8 +280,10 @@ public class GamePageController {
 
 		timer.stop();
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(300), 
-				new KeyValue(ball.layoutYProperty(), ball.getLayoutY()-70)));
+		double initialpos=this.ball.getLayoutY();
+
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), 
+				new KeyValue(ball.layoutYProperty(), ball.getLayoutY()-50)));
 		timeline.setCycleCount(1);
 		timeline.play();
 
