@@ -121,8 +121,18 @@ public class GamePageController {
 	}
 	
 	public void stopGame(boolean check) throws IOException{
-		if(this.classBall.getBall().getLayoutY()>500 || check) {
-			Parent GamePageParent = FXMLLoader.load(getClass().getResource("RespawnPage.fxml"));
+		
+		if(this.ball.getLayoutY()>500 || check) {
+			
+			int gamescore = Integer.parseInt(scoreLabel.getText());
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("RespawnPage.fxml"));
+			loader.load();
+			
+			RespawnPageController page = loader.getController();
+			page.setLabels(gamescore);
+			
+			Parent GamePageParent = loader.getRoot();
 			Scene GamePageScene = new Scene(GamePageParent);
 
 			Stage window = (Stage)(this.anchorPane).getScene().getWindow();
