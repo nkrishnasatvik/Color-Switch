@@ -9,11 +9,19 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
+	
+	public static database allGames;
+	public static Scene scene;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-			Scene scene = new Scene(root);
+			
+			allGames=new database();
+			
+			scene = new Scene(root);	
 			
 			primaryStage.setScene(scene);
 			primaryStage.show();

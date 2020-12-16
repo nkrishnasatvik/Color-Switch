@@ -4,10 +4,14 @@ import javafx.scene.shape.Circle;
 
 public class Ball {
 	
-	Circle Ball;
+	Circle ball;
 	
-	public void setBall(Circle ball) {
-		this.Ball=ball;
+	Ball(Circle ball){
+		this.ball=ball;
+	}
+	
+	public Circle getBall() {
+		return this.ball;
 	}
 
 }

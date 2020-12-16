@@ -64,7 +64,6 @@
          </children>
       </Group>
       <Label layoutX="21.0" layoutY="18.0" text="Score: " textFill="WHITE" AnchorPane.topAnchor="18.0" />
-      <Button fx:id="bounce" layoutX="238.0" layoutY="461.0" mnemonicParsing="false" onAction="#ballBounce" text="Bounce" AnchorPane.bottomAnchor="14.0" />
       <Label fx:id="scoreLabel" layoutX="65.0" layoutY="18.0" text="0" textFill="WHITE" AnchorPane.topAnchor="18.0" />
    </children>
 </AnchorPane>

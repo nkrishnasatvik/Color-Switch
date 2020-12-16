@@ -48,10 +48,12 @@ public class MainPageController {
     public void startGamePage(ActionEvent event) throws IOException {
     	
     	Parent GamePageParent = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
-    	Scene GamePageScene = new Scene(GamePageParent);
+    	Main.scene.setRoot(GamePageParent);
     	
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(GamePageScene);
+    	Main.allGames.setCurrentGame(GamePageParent);
+    	
+    	Stage window = (Stage)Main.scene.getWindow();
+    	window.setScene(Main.scene);
     	window.show();
     	
     }

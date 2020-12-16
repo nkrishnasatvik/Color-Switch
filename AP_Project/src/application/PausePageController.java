@@ -25,12 +25,15 @@ public class PausePageController {
     @FXML
     void resumeBTAction(ActionEvent event) throws IOException {
     	
-    	Parent GamePageParent = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
-    	Scene GamePageScene = new Scene(GamePageParent);
+    	GamePageController.playyy=true;
+//    	
+//    	Parent GamePageParent = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
+    	Main.scene.setRoot(Main.allGames.getCurrentGame());
     	
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(GamePageScene);
+    	window.setScene(Main.scene);
     	window.show();
+    	
     }
 
     @FXML
