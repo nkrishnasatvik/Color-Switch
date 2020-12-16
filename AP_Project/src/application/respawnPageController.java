@@ -16,34 +16,28 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class respawnPageController {
-
-    @FXML
-    private AnchorPane PausedScreen;
-
-    @FXML
-    private Button mainMenuButton;
-
-    @FXML
-    private Button respawnButton;
-
-    @FXML
-    private Label totalStars;
-
-    @FXML
-    private Label score;
-
-    @FXML
-    private Label highScore;
-
-    @FXML
-    private Button restartButton;
-    
-    private static int noOfStars;
+public class RespawnPageController {
+	@FXML
+	private AnchorPane PausedScreen;
+	@FXML
+	private Button mainMenuButton;
+	@FXML
+	private Button respawnButton;
+	@FXML
+	private Label totalStars;
+	@FXML
+	private Label score;
+	@FXML
+	private Label highScore;
+	@FXML
+	private Button restartButton;
+	
+	private static int noOfStars;
 	private static int highScoreVal;
 	private int scoreVal;
-    
-    // Event Listener on Button[#mainMenuButton].onAction
+	
+
+	// Event Listener on Button[#mainMenuButton].onAction
 	@FXML
 	public void mainMenuBTAction(ActionEvent event) throws IOException {
 		
@@ -88,5 +82,4 @@ public class respawnPageController {
 		}
 		
 	}
-
 }
