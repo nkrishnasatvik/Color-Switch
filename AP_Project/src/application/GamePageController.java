@@ -80,35 +80,45 @@ public class GamePageController {
 		ball.setLayoutY(ball.getLayoutY() - dy);
 
 	}
-	
-	
+
+
 	public void obstaclesUp() {
 		if(this.SquareObstacle.getLayoutY()>500) {
 			this.SquareObstacle.setLayoutY(this.SquareObstacle.getLayoutY()-1200);
 		}
-		
+
 		else if(this.Triangle.getLayoutY()>500) {
 			this.Triangle.setLayoutY(this.Triangle.getLayoutY()-1200);
 		}
-		
+
 		else if(this.Plus.getLayoutY()>500) {
 			this.Plus.setLayoutY(this.Plus.getLayoutY()-1200);
 		}
-		
+
 		else if(this.Circle.getLayoutY()>500) {
 			this.Circle.setLayoutY(this.Circle.getLayoutY()-1200);
 		}
 	}
-//
-//	public void ballUp() {
-//
-//		double dy = +1.5;
-//		ball.setLayoutY(ball.getLayoutY() - dy);
-//
-//	}
-	
-	public void stopGame(){
-		
+	//
+	//	public void ballUp() {
+	//
+	//		double dy = +1.5;
+	//		ball.setLayoutY(ball.getLayoutY() - dy);
+	//
+	//	}
+
+	public void stopGame(boolean check) throws IOException{
+		if(this.ball.getLayoutY()>500 || check) {
+			Parent GamePageParent = FXMLLoader.load(getClass().getResource("RespawnPage.fxml"));
+			Scene GamePageScene = new Scene(GamePageParent);
+
+			Stage window = (Stage)(this.anchorPane).getScene().getWindow();
+			window.setScene(GamePageScene);
+			window.show();
+
+			this.timer.stop();
+			this.infiniteTimer.stop();
+		}
 	}
 
 	@FXML
@@ -142,6 +152,7 @@ public class GamePageController {
 					collisions();
 					moveup();
 					obstaclesUp();
+					stopGame(false);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -152,7 +163,7 @@ public class GamePageController {
 		infiniteTimer.start();
 
 		rotate();
-		
+
 	}
 
 	public void rotate() {
@@ -197,7 +208,7 @@ public class GamePageController {
 				node.setLayoutY(node.getLayoutY()+1);
 			}
 		}
-		
+
 	}
 
 	@FXML
@@ -235,13 +246,53 @@ public class GamePageController {
 				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {	
 
 					for(Node line:this.SquareObstacle.getChildren()) {
-
-					}
-					//					
+						if(((Path)Shape.intersect(ball, (Line)line)).getElements().size() > 5) {
+							if(((Line)line).getFill() != ball.getFill()) {
+								stopGame(true);
+							}
+						}
+					}					
 				}
 			}
+			
+			if(static_bloc==this.Plus) {
+				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {	
 
-			//			System.out.println(this.starGroup.getId()+" "+static_bloc.toString());
+					for(Node line:this.Plus.getChildren()) {
+						if(((Path)Shape.intersect(ball, (Line)line)).getElements().size() > 5) {
+							if(((Line)line).getFill() != ball.getFill()) {
+								stopGame(true);
+							}
+						}
+					}					
+				}
+			}
+			
+			if(static_bloc==this.Triangle) {
+				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {	
+
+					for(Node line:this.Triangle.getChildren()) {
+						if(((Path)Shape.intersect(ball, (Line)line)).getElements().size() > 5) {
+							if(((Line)line).getFill() != ball.getFill()) {
+								stopGame(true);
+							}
+						}
+					}					
+				}
+			}
+			
+			if(static_bloc==this.Circle) {
+				if (ball.getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {	
+
+					for(Node arc:this.Circle.getChildren()) {
+						if(((Path)Shape.intersect(ball, (Arc)arc)).getElements().size() > 5) {
+							if(((Arc)arc).getStroke()!= ball.getFill()) {
+								stopGame(true);
+							}
+						}
+					}					
+				}
+			}
 		}
 
 		if (colorSwitchCollision) {
@@ -275,6 +326,21 @@ public class GamePageController {
 		//		System.out.println(starCollision);
 	}
 
+
+	@FXML
+	void mouseClickAction(MouseEvent event) {
+		timer.stop();
+
+		double initialpos=this.ball.getLayoutY();
+
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), 
+				new KeyValue(ball.layoutYProperty(), ball.getLayoutY()-50)));
+		timeline.setCycleCount(1);
+		timeline.play();
+
+		timer.start();
+	}
+
 	@FXML
 	public void ballBounce(ActionEvent event) throws IOException {		
 
@@ -282,8 +348,8 @@ public class GamePageController {
 
 		double initialpos=this.ball.getLayoutY();
 
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(200), 
-				new KeyValue(ball.layoutYProperty(), ball.getLayoutY()-50)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(160), 
+				new KeyValue(ball.layoutYProperty(), ball.getLayoutY()-40)));
 		timeline.setCycleCount(1);
 		timeline.play();
 
