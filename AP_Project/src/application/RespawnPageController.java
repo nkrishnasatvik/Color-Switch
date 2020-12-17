@@ -8,11 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.scene.control.Label;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class respawnPageController {
@@ -37,9 +40,14 @@ public class respawnPageController {
 	public void mainMenuBTAction(ActionEvent event) throws IOException {
 
 		Parent GamePageParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-		Main.scene.setRoot(GamePageParent);
+		
+		
+		Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
+        mediaPlayer.play();
 
-		Stage window = (Stage)Main.scene.getWindow();
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Main.scene.setRoot(GamePageParent);
 		window.setScene(Main.scene);
 		window.show();
 
@@ -49,10 +57,15 @@ public class respawnPageController {
 	public void respawnBTAction(ActionEvent event) throws IOException {
 
 		if(Main.allGames.getTotalStars()>=3) {
+	        
 			Main.allGames.setTotalStars(Main.allGames.getTotalStars()-3);
 			GamePageController.playyy=true;
 
 			Main.scene.setRoot(Main.allGames.getCurrentGame());
+			
+			Media respawn = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\touchRespawn.wav").toURI().toString());
+	        MediaPlayer mediaPlayer = new MediaPlayer(respawn);
+	        mediaPlayer.play();
 
 			Stage window = (Stage)Main.scene.getWindow();
 			window.setScene(Main.scene);
@@ -68,6 +81,10 @@ public class respawnPageController {
 		Main.scene.setRoot(GamePageParent);
 
 		Main.allGames.setCurrentGame(GamePageParent);
+		
+		Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
+        mediaPlayer.play();
 
 		Stage window = (Stage)Main.scene.getWindow();
 		window.setScene(Main.scene);

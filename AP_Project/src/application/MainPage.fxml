@@ -12,7 +12,7 @@
       <Button fx:id="newGameButton" layoutX="75.0" layoutY="257.0" mnemonicParsing="false" onAction="#startGamePage" style="-fx-background-color: rgb(55,50,45);" text="New Game" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" />
       <ImageView blendMode="SCREEN" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Users/Win10/Downloads/TitleImage.jpg" />
+            <Image url="@../../../../Downloads/colorSwitchTitle.jpeg" />
          </image>
       </ImageView>
    </children>

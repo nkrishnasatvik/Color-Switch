@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.animation.KeyFrame;
@@ -17,6 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
@@ -51,6 +54,10 @@ public class MainPageController {
     	Parent GamePageParent = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
     	Main.scene.setRoot(GamePageParent);
     	
+    	Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
+        mediaPlayer.play();
+    	
     	Main.allGames.setCurrentGame(GamePageParent);
     	
     	Stage window = (Stage)Main.scene.getWindow();
@@ -65,6 +72,10 @@ public class MainPageController {
     	Parent GamePageParent = FXMLLoader.load(getClass().getResource("SavedGamesPage.fxml"));
     	Scene GamePageScene = new Scene(GamePageParent);
     	
+    	Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
+        mediaPlayer.play();
+    	
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	window.setScene(GamePageScene);
     	window.show();
@@ -72,6 +83,11 @@ public class MainPageController {
 	
 	@FXML
 	void exitGame(ActionEvent e) {
+		
+		Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
+        mediaPlayer.play();
+        
 		Platform.exit();
 		System.exit(0);
 	}

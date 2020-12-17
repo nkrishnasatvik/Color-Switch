@@ -1,6 +1,8 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.*;
 
 import javafx.animation.*;
@@ -16,6 +18,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
@@ -102,7 +106,7 @@ public class GamePageController {
 
 		};
 
-		this.timer.start();
+
 
 		this.infiniteTimer = new AnimationTimer() {
 
@@ -120,13 +124,14 @@ public class GamePageController {
 			}
 		};
 
-		infiniteTimer.start();
+		this.infiniteTimer.start();
 
 	}
 	
 	public void stopGame(boolean check) throws IOException{
 		if(this.ball.getLayoutY()>500 || check) {
 			
+//			System.out.println(getClass().getResource("./gameOver.wav"));
 			this.timer.stop();
 			this.infiniteTimer.stop();
 
@@ -134,6 +139,10 @@ public class GamePageController {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("RespawnPage.fxml"));
 			loader.load();
+			//new File("C:\\Users\\Krishna Satvik\\Downloads\\gameOver.wav").toURI().toString()
+			Media gameOver = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\gameOver.wav").toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(gameOver);
+            mediaPlayer.play();
 
 			respawnPageController page = loader.getController();
 			page.setLabels(gamescore,tempscore);
@@ -201,6 +210,10 @@ public class GamePageController {
 		
 		Parent GamePageParent = FXMLLoader.load(getClass().getResource("PausePage.fxml"));
 		Scene GamePageScene = new Scene(GamePageParent);
+		
+		Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
+        mediaPlayer.play();
 		
 		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
 		window.setScene(GamePageScene);
@@ -285,7 +298,10 @@ public class GamePageController {
 		}
 
 		if (colorSwitchCollision) {
-
+			
+			Media touchCS = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\touchCS.wav").toURI().toString());
+	        MediaPlayer mediaPlayer = new MediaPlayer(touchCS);
+	        mediaPlayer.play();
 
 			if(this.classBall.getBall().getFill()==Color.BLUE) {
 				this.classBall.getBall().setFill(Color.RED);
@@ -305,6 +321,10 @@ public class GamePageController {
 
 		if(starCollision) {
 			
+			Media touchStar = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\touchStar.wav").toURI().toString());
+	        MediaPlayer mediaPlayer = new MediaPlayer(touchStar);
+	        mediaPlayer.play();
+			
 			tempscore++;
 
 			int x=Integer.parseInt(scoreLabel.getText())+1;
@@ -323,6 +343,12 @@ public class GamePageController {
 	
 	@FXML
 	void mouseClickAction(MouseEvent event) {
+		
+		this.startAllActivities();
+		
+		Media ballTap = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\ballTap.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(ballTap);
+        mediaPlayer.play();
 		
 		if(playyy) {
 			
