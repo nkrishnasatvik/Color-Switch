@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -68,4 +69,10 @@ public class MainPageController {
     	window.setScene(GamePageScene);
     	window.show();
     }
+	
+	@FXML
+	void exitGame(ActionEvent e) {
+		Platform.exit();
+		System.exit(0);
+	}
 }

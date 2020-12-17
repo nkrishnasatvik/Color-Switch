@@ -228,6 +228,7 @@ public class GamePageController {
 					for(Node line:this.obstacles.get(0).getGroup().getChildren()) {
 						if(((Path)Shape.intersect(this.classBall.getBall(), (Line)line)).getElements().size() > 5) {
 							if(((Line)line).getFill() != this.classBall.getBall().getFill()) {
+								this.obstacles.get(0).getGroup().setLayoutY(this.obstacles.get(0).getGroup().getLayoutY()-1200);
 								stopGame(true);
 							}
 						}
@@ -241,6 +242,7 @@ public class GamePageController {
 					for(Node arc:this.obstacles.get(1).getGroup().getChildren()) {
 						if(((Path)Shape.intersect(this.classBall.getBall(), (Arc)arc)).getElements().size() > 5) {
 							if(((Arc)arc).getStroke()!= this.classBall.getBall().getFill()) {
+								this.obstacles.get(1).getGroup().setLayoutY(this.obstacles.get(1).getGroup().getLayoutY()-1200);
 								stopGame(true);
 							}
 						}
@@ -254,6 +256,7 @@ public class GamePageController {
 					for(Node line:this.obstacles.get(2).getGroup().getChildren()) {
 						if(((Path)Shape.intersect(this.classBall.getBall(), (Line)line)).getElements().size() > 5) {
 							if(((Line)line).getFill() != this.classBall.getBall().getFill()) {
+								this.obstacles.get(2).getGroup().setLayoutY(this.obstacles.get(2).getGroup().getLayoutY()-1200);
 								stopGame(true);
 							}
 						}
@@ -266,7 +269,8 @@ public class GamePageController {
 
 					for(Node line:this.obstacles.get(3).getGroup().getChildren()) {
 						if(((Path)Shape.intersect(this.classBall.getBall(), (Line)line)).getElements().size() > 5) {
-							if(((Line)line).getFill() != this.classBall.getBall().getFill()) {
+							if(((Line)line).getFill() != this.classBall.getBall().getFill() && ((Line)line).getFill()!=Color.WHITE) {
+								this.obstacles.get(3).getGroup().setLayoutY(this.obstacles.get(3).getGroup().getLayoutY()-1200);
 								stopGame(true);
 							}
 						}

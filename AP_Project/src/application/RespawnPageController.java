@@ -47,7 +47,18 @@ public class respawnPageController {
 	
 	@FXML
 	public void respawnBTAction(ActionEvent event) throws IOException {
-
+		
+		if(Main.allGames.getTotalStars()>=1) {
+			Main.allGames.setTotalStars(Main.allGames.getTotalStars()-1);
+			GamePageController.playyy=true;
+			
+	    	Main.scene.setRoot(Main.allGames.getCurrentGame());
+	    	
+	    	Stage window = (Stage)Main.scene.getWindow();
+	    	window.setScene(Main.scene);
+	    	window.show();
+		}
+		
 	}
 
 	@FXML
@@ -55,6 +66,8 @@ public class respawnPageController {
 
 		Parent GamePageParent = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
     	Main.scene.setRoot(GamePageParent);
+    	
+    	Main.allGames.setCurrentGame(GamePageParent);
 
     	Stage window = (Stage)Main.scene.getWindow();
     	window.setScene(Main.scene);

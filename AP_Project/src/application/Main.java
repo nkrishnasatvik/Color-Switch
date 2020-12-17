@@ -20,7 +20,8 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 			
 			allGames=new database();
-			
+			String s=root.toString();
+
 			scene = new Scene(root);	
 			
 			primaryStage.setScene(scene);
