@@ -47,13 +47,12 @@ public class GamePageController {
 	private Group Circle;
 
 	@FXML
-	private Button startBT;
-
-	@FXML
 	private Group ColorSwitcher;
 
 	@FXML
 	private Label scoreLabel;
+	
+	private int tempscore;
 
 	@FXML
 	private Button bounce;
@@ -69,9 +68,16 @@ public class GamePageController {
 	private AnimationTimer infiniteTimer;
 
 	private ArrayList<Obstacle> obstacles;
+	
+	private int difficultyLevel;
+	
+	boolean respawnBoolean;
+
 
 	@FXML
 	public void initialize() {
+		
+		this.difficultyLevel=1;
 		
 		this.classBall=new Ball(this.ball);
 		
@@ -116,8 +122,6 @@ public class GamePageController {
 
 		infiniteTimer.start();
 
-		rotate();
-
 	}
 	
 	public void stopGame(boolean check) throws IOException{
@@ -132,7 +136,7 @@ public class GamePageController {
 			loader.load();
 
 			respawnPageController page = loader.getController();
-			page.setLabels(gamescore);
+			page.setLabels(gamescore,tempscore);
 
 			Parent GamePageParent = loader.getRoot();
 
@@ -165,7 +169,7 @@ public class GamePageController {
 	public void rotate() {
 		
 		for(Obstacle obs:obstacles) {
-			obs.rotate();
+			obs.rotate(this.difficultyLevel);
 		}
 	}
 
@@ -187,6 +191,7 @@ public class GamePageController {
 		this.timer.start();
 		this.infiniteTimer.start();
 	}
+	
 
 	@FXML
 	void displayPausePage(ActionEvent event) throws IOException {
@@ -299,12 +304,18 @@ public class GamePageController {
 		}
 
 		if(starCollision) {
+			
+			tempscore++;
 
-			int x=Integer.parseInt(scoreLabel.getText());
+			int x=Integer.parseInt(scoreLabel.getText())+1;
 
-			scoreLabel.setText(Integer.toString(x+1));
+			scoreLabel.setText(Integer.toString(x));
 
 			this.starGroup.setLayoutY(this.starGroup.getLayoutY()-300);
+			
+			if(x>=3) this.difficultyLevel=2;
+			
+			if(x>=6) this.difficultyLevel=3;
 		}
 	}
 	
@@ -314,7 +325,11 @@ public class GamePageController {
 	void mouseClickAction(MouseEvent event) {
 		
 		if(playyy) {
+			
+			if(ball.getLayoutY()>=500) ball.setLayoutY(ball.getLayoutY()-50);
+			tempscore=0;
 			playyy=false;
+			respawnBoolean=true;
 			this.timer.start();
 			this.infiniteTimer.start();
 		}

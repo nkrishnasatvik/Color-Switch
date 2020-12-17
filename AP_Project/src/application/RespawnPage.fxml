@@ -15,7 +15,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="respawnButton" layoutX="54.0" layoutY="265.0" mnemonicParsing="false" onAction="#respawnBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-border-color: #40e0d0; -fx-border-radius: 25px; -fx-background-color: rgb(45,44,44);" text="Respawn (-5 Stars)" textFill="RED">
+      <Button fx:id="respawnButton" layoutX="54.0" layoutY="265.0" mnemonicParsing="false" onAction="#respawnBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-border-color: #40e0d0; -fx-border-radius: 25px; -fx-background-color: rgb(45,44,44);" text="Respawn (-3 Stars)" textFill="RED">
          <font>
             <Font size="15.0" />
          </font>

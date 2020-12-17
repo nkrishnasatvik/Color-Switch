@@ -10,9 +10,9 @@ public class CircleObstacle extends Obstacle {
 	}
 	
 	@Override
-	public void rotate() {
+	public void rotate(int diff) {
 		
-		this.getGroup().setRotate(this.getGroup().getRotate()+1);
+		this.getGroup().setRotate(this.getGroup().getRotate()+diff);
 	}
 
 }

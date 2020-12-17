@@ -39,6 +39,8 @@ public class PausePageController {
     @FXML
     void saveBTAction(ActionEvent event) throws IOException {
     	
+    	Parent p=Main.allGames.getCurrentGame();
+    	
     	Parent GamePageParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
     	Scene GamePageScene = new Scene(GamePageParent);
     	

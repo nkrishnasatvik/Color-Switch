@@ -29,6 +29,6 @@ public abstract class Obstacle {
 		return group;
 	}
 
-	public abstract void rotate();
+	public abstract void rotate(int difficultyLevel);
 
 }

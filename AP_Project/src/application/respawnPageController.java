@@ -17,75 +17,75 @@ import javafx.stage.Stage;
 
 public class respawnPageController {
 
-    @FXML
-    private AnchorPane PausedScreen;
-    @FXML
-    private Button mainMenuButton;
-    @FXML
-    private Button respawnButton;
-    @FXML
-    private Label totalStars;
-    @FXML
-    private Label score;
-    @FXML
-    private Label highScore;
+	@FXML
+	private AnchorPane PausedScreen;
+	@FXML
+	private Button mainMenuButton;
+	@FXML
+	private Button respawnButton;
+	@FXML
+	private Label totalStars;
+	@FXML
+	private Label score;
+	@FXML
+	private Label highScore;
 
-    @FXML
-    private Button restartButton;
+	@FXML
+	private Button restartButton;
 
 	@FXML
 	public void mainMenuBTAction(ActionEvent event) throws IOException {
 
 		Parent GamePageParent = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-    	Main.scene.setRoot(GamePageParent);
+		Main.scene.setRoot(GamePageParent);
 
-    	Stage window = (Stage)Main.scene.getWindow();
-    	window.setScene(Main.scene);
-    	window.show();
+		Stage window = (Stage)Main.scene.getWindow();
+		window.setScene(Main.scene);
+		window.show();
 
 	}
-	
+
 	@FXML
 	public void respawnBTAction(ActionEvent event) throws IOException {
-		
-		if(Main.allGames.getTotalStars()>=1) {
-			Main.allGames.setTotalStars(Main.allGames.getTotalStars()-1);
+
+		if(Main.allGames.getTotalStars()>=3) {
+			Main.allGames.setTotalStars(Main.allGames.getTotalStars()-3);
 			GamePageController.playyy=true;
-			
-	    	Main.scene.setRoot(Main.allGames.getCurrentGame());
-	    	
-	    	Stage window = (Stage)Main.scene.getWindow();
-	    	window.setScene(Main.scene);
-	    	window.show();
+
+			Main.scene.setRoot(Main.allGames.getCurrentGame());
+
+			Stage window = (Stage)Main.scene.getWindow();
+			window.setScene(Main.scene);
+			window.show();
 		}
-		
+
 	}
 
 	@FXML
 	public void restartBTAction(ActionEvent event) throws IOException {
 
 		Parent GamePageParent = FXMLLoader.load(getClass().getResource("GamePage.fxml"));
-    	Main.scene.setRoot(GamePageParent);
-    	
-    	Main.allGames.setCurrentGame(GamePageParent);
+		Main.scene.setRoot(GamePageParent);
 
-    	Stage window = (Stage)Main.scene.getWindow();
-    	window.setScene(Main.scene);
-    	window.show();
+		Main.allGames.setCurrentGame(GamePageParent);
+
+		Stage window = (Stage)Main.scene.getWindow();
+		window.setScene(Main.scene);
+		window.show();
 
 	}
 
-	public void setLabels(int gamescore) {
+	public void setLabels(int gamescore,int tempscore) {
 
 		this.score.setText(Integer.toString(gamescore));
 		
-		Main.allGames.setTotalStars(Main.allGames.getTotalStars()+gamescore);
+		Main.allGames.setTotalStars(Main.allGames.getTotalStars()+tempscore);
 		this.totalStars.setText(Integer.toString(Main.allGames.getTotalStars()));
 
 		if(Main.allGames.getHighScore() < gamescore) {
 			Main.allGames.setHighScore(gamescore);
 		}
-		
+
 		this.highScore.setText(Integer.toString(Main.allGames.getHighScore()));
 
 	}
