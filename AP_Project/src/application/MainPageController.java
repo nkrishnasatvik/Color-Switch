@@ -82,11 +82,13 @@ public class MainPageController {
     }
 	
 	@FXML
-	void exitGame(ActionEvent e) {
+	void exitGame(ActionEvent e) throws IOException {
 		
 		Media buttonClick = new Media(new File("C:\\Users\\Krishna Satvik\\Downloads\\buttonClick.wav").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(buttonClick);
         mediaPlayer.play();
+        
+        Main.serialize();
         
 		Platform.exit();
 		System.exit(0);

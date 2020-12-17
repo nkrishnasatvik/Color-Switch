@@ -8,17 +8,11 @@ import javafx.util.Duration;
 
 public abstract class Obstacle {
 	
-	protected RotateTransition rt;
 	protected int colors;
 	protected Group group;
 	
 	Obstacle(Group group) {
 		this.group=group;
-		rt=new RotateTransition();
-	}
-	
-	public RotateTransition getRt() {
-		return rt;
 	}
 
 	public int getColors() {
