@@ -12,6 +12,6 @@ public class TriangleObstacle extends Obstacle {
 	@Override
 	public void rotate() {
 		
-		this.getGroup().setRotate(this.getGroup().getRotate()+3);
+		this.getGroup().setRotate(this.getGroup().getRotate()+1);
 	}
 }

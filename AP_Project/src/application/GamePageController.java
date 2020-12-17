@@ -121,16 +121,27 @@ public class GamePageController {
 	}
 	
 	public void stopGame(boolean check) throws IOException{
-		if(this.classBall.getBall().getLayoutY()>500 || check) {
-			Parent GamePageParent = FXMLLoader.load(getClass().getResource("RespawnPage.fxml"));
-			Scene GamePageScene = new Scene(GamePageParent);
-
-			Stage window = (Stage)(this.anchorPane).getScene().getWindow();
-			window.setScene(GamePageScene);
-			window.show();
-
+		if(this.ball.getLayoutY()>500 || check) {
+			
 			this.timer.stop();
 			this.infiniteTimer.stop();
+
+			int gamescore = Integer.parseInt(scoreLabel.getText());
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("RespawnPage.fxml"));
+			loader.load();
+
+			respawnPageController page = loader.getController();
+			page.setLabels(gamescore);
+
+			Parent GamePageParent = loader.getRoot();
+
+			Stage window = (Stage)(this.anchorPane).getScene().getWindow();
+			
+			Main.scene.setRoot(GamePageParent);
+			window.setScene(Main.scene);
+			window.show();
+
 		}
 	}
 	
@@ -165,7 +176,6 @@ public class GamePageController {
 				node.setLayoutY(node.getLayoutY()+1);
 			}
 		}
-
 	}
 	
 	public void stopAllActivities() {
@@ -205,6 +215,7 @@ public class GamePageController {
 					colorSwitchCollision = true;
 				}
 			}
+			
 			if(static_bloc==this.starGroup) {
 				if (this.classBall.getBall().getBoundsInParent().intersects(static_bloc.getBoundsInParent()) ) {
 					starCollision = true;

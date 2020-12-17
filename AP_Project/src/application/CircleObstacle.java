@@ -12,7 +12,7 @@ public class CircleObstacle extends Obstacle {
 	@Override
 	public void rotate() {
 		
-		this.getGroup().setRotate(this.getGroup().getRotate()+2);
+		this.getGroup().setRotate(this.getGroup().getRotate()+1);
 	}
 
 }

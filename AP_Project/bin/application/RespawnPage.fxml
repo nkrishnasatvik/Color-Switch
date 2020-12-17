@@ -10,12 +10,12 @@
 
 <AnchorPane fx:id="PausedScreen" maxHeight="500.0" maxWidth="320.0" minHeight="500.0" minWidth="320.0" prefHeight="500.0" prefWidth="320.0" style="-fx-background-color: rgb(45,44,44);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.respawnPageController">
    <children>
-      <Button fx:id="mainMenuButton" layoutX="54.0" layoutY="406.0" mnemonicParsing="false" onAction="#resumeBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-background-color: rgb(45,44,44); -fx-border-radius: 25px; -fx-border-color: LIGHTGREEN;" text="Main Menu" textFill="TURQUOISE">
+      <Button fx:id="mainMenuButton" layoutX="54.0" layoutY="406.0" mnemonicParsing="false" onAction="#mainMenuBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-background-color: rgb(45,44,44); -fx-border-radius: 25px; -fx-border-color: LIGHTGREEN;" text="Main Menu" textFill="TURQUOISE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="respawnButton" layoutX="54.0" layoutY="265.0" mnemonicParsing="false" onAction="#saveBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-border-color: #40e0d0; -fx-border-radius: 25px; -fx-background-color: rgb(45,44,44);" text="Respawn (-5 Stars)" textFill="RED">
+      <Button fx:id="respawnButton" layoutX="54.0" layoutY="265.0" mnemonicParsing="false" onAction="#respawnBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-border-color: #40e0d0; -fx-border-radius: 25px; -fx-background-color: rgb(45,44,44);" text="Respawn (-5 Stars)" textFill="RED">
          <font>
             <Font size="15.0" />
          </font>
@@ -41,14 +41,14 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button fx:id="restartButton" layoutX="54.0" layoutY="336.0" mnemonicParsing="false" onAction="#saveBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-border-color: RED; -fx-border-radius: 25px; -fx-background-color: rgb(45,44,44);" text="Restart" textFill="LIGHTGREEN">
+      <Button fx:id="restartButton" layoutX="54.0" layoutY="336.0" mnemonicParsing="false" onAction="#restartBTAction" prefHeight="51.0" prefWidth="212.0" style="-fx-border-color: RED; -fx-border-radius: 25px; -fx-background-color: rgb(45,44,44);" text="Restart" textFill="LIGHTGREEN">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
       <Group layoutX="109.0" layoutY="-87.0">
          <children>
-            <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="95.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="39.0" fitWidth="41.0" layoutX="96.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Downloads/starImage.png" />
                </image>
