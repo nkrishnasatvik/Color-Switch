@@ -1,6 +1,6 @@
 # Color-Switch
 
-This project is based on the classic mode of the popular mobile game Color Switch. Me and my partner Abhinav have done this project under the course Advanced Programming-CSE 201.
+This project is based on the classic mode of the popular mobile game Color Switch. My partner Abhinav and I have done this project under the course Advanced Programming-CSE 201.
 
 Technologies Used- Java, JavaFX.
 Tools Used- Eclipse IDE, Scene Builder.
